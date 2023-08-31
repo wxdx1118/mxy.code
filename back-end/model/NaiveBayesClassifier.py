@@ -6,7 +6,7 @@ class NaiveBayesClassifier(Model):
     parameter={}
 
     def __init__(self, learning_rate=1.0):
-        self.alpha = learning_rate  # 学习率参数
+        self.alpha = learning_rate  # 平滑参数
         self.priors = None  # 先验概率
         self.means = None  # 特征均值
         self.stds = None  # 特征标准差
@@ -26,7 +26,7 @@ class NaiveBayesClassifier(Model):
 
         for label in self.classes:
             X_label = X_train[y_train == label]
-            self.priors[label] = len(X_label) / len(X_train)
+            self.priors[label] = (len(X_label) + self.alpha) / (len(X_train) + self.alpha * self.n_classes)  # 拉普拉斯平滑
             self.means[label] = X_label.mean(axis=0)
             self.stds[label] = X_label.std(axis=0)
 

@@ -27,6 +27,6 @@ class RandomForest(Model):
     def predict(self, X_test):
         predictions = np.zeros(len(X_test))
         for tree in self.trees:
-           predictions += self.learning_rate * tree.predict(X_test) 
+           predictions += tree.predict(X_test) 
         return np.round(predictions / len(self.trees))
 

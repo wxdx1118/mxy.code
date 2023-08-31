@@ -13,6 +13,8 @@
         <ul>
             <li v-for="(item, index) in result" :key="index">&nbsp;&nbsp;{{ item }}</li>
         </ul>
+        <div id="imageContainer"></div>
+        <!-- <p>预测值与真实值对比散点图</p>   -->
     </div>
 </div>    
 </template>
@@ -148,5 +150,9 @@ export default{
     color: #fff;
     font-weight: 300;
     margin: 35px 0 35px 0;
+}
+#imageContainer{
+    max-width: 10%;
+
 }
 </style>

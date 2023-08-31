@@ -11,15 +11,16 @@ class DigitsDataset(Dataset):
     def load(self):
         df=super().load()
         df=self.basic(df)
-        
+        self.insertOne(df)
+        df=self.toDichotomy(df)
         return df
 
-    def insertOne(self):#插入一列ones
-        self.data.insert(0, 'Ones', 1) # 引入截距项
+    def insertOne(self,df):#插入一列ones
+        df.insert(0, 'Ones', 1) # 引入截距项
     
-    def toDichotomy(self,y):#转成二分类
-        y=(y > 4).astype(np.int)
-        return y
+    def toDichotomy(self,df):#转成二分类
+        df.iloc[:,-1]=(df.iloc[:,-1] > 4).astype(np.int)
+        return df
     
     def toNumpy(self):#转换成数组
         return self.data.values

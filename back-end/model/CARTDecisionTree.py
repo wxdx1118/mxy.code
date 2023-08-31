@@ -22,10 +22,11 @@ class CARTDecisionTree(Model):
         self.pruning = self.parameter['pruning 是否进行剪枝:True/False']  # 是否进行剪枝
         self.root = None  # 决策树根节点
 
+    # 用于随机森林
     def __init__(self,learning_rate=1.0,max_depth=20):
         self.max_depth = max_depth # 最大深度限制
         self.learning_rate = learning_rate  # 学习率参数
-        self.pruning = True # 是否进行剪枝
+        self.pruning = None # 是否进行剪枝
         self.root = None  # 决策树根节点
 
     @classmethod # 使用类方法装饰器

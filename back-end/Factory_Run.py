@@ -55,6 +55,6 @@ class Factory_Run(PerformanceTesterFactory,ModelFatory,SplitterFactory,DataFator
 
         #实例化
         model=model(learning_rate=learning_rate)
-        result=splitter.run(data,splitter,ratio,model,performances)
+        result,photo=splitter.run(data,splitter,ratio,model,performances)
 
-        logger.set_output(result)
+        logger.set_output(result,photo)

@@ -1,7 +1,8 @@
 import numpy as np
+from splitter.Splitter import Splitter
 from sklearn.model_selection import KFold
 
-class KSplitter():
+class KSplitter(Splitter):
     def __init__(self) -> None:
         super().__init__()
 
@@ -56,10 +57,12 @@ class KSplitter():
 
             # 根据索引将特定内容和原始列表中的元素一一对应，并连接为一个字符串以逗号分隔
             output_string.append(("Fold "+str(n)+': ') + (', '.join([(performances[i].name+'=') + str(round(item,2)) for i, item in enumerate(pfm)])))
+        
+        image_data=self.praplt(y_test,y_pred)
 
         for i in range(len(performances)):
             output_string.append(("Mean "+performances[i].name+": {:.2f}".format(performance_sum[i]/n) ))
 
         #print(output_string)
-        return output_string
+        return output_string,image_data
       

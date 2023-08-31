@@ -1,8 +1,9 @@
 # 导入数据集划分工具
+from splitter.Splitter import Splitter
 from sklearn.model_selection import train_test_split
 
 #拆分数据集
-class RSplitter():
+class RSplitter(Splitter):
     def __init__(self) -> None:
         super().__init__()
 
@@ -25,10 +26,12 @@ class RSplitter():
         model.train(X_train, y_train)
         y_pred = model.predict(X_test)
 
+        image_data=self.praplt(y_test,y_pred)
+
         for i in range(len(performances)):
             output_string.append((performances[i].name+" = {:.2f}".format(performances[i].compute(y_pred, y_test))))
         
         #print(output_string)
-        return output_string
+        return output_string,image_data
 
 

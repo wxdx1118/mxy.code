@@ -62,7 +62,7 @@ class Register:
             'KMeans':KMeans,
             'SVM':SVC,
             'GBDT':GBDTClassifier,
-            # 'LogisticRegression':LogisticRegression
+            'LogisticRegression':LogisticRegression
         }
         self.reg_model={
             'LinearRegression':LinearRegression,

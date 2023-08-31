@@ -122,11 +122,13 @@ export default{
                 selected: false
             }));
             this.updateItems();
+            imageContainer.innerHTML = ''; // 清空容器中的内容
 
             this.websocket.send(this.problem_type);
         },
         handleSend() {
             this.result = [];
+            imageContainer.innerHTML = ''; // 清空容器中的内容
             if (this.mergedSelection.length === 7 && this.mergedSelection.every(selection => selection !== null)) {
                 // 发送消息给后端
                 console.log(this.mergedSelection);
@@ -161,6 +163,23 @@ export default{
             }
             else{
                 this.result=message.res;
+                // 提取图像数据
+                var encoded_image=JSON.parse(message.pho);
+                var encoded_image =encoded_image.image;
+                // 创建图像元素
+                var img = document.createElement('img');
+                
+                //var img=new Image()
+                img.src = 'data:image/png;base64,' + encoded_image;
+                img.alt = "预测值与真实值对比散点图";
+                img.title = "预测值与真实值对比散点图";
+
+                // 获取容器元素的引用
+                var imageContainer = document.getElementById('imageContainer');
+                imageContainer.innerHTML = ''; // 清空容器中的内容
+                // 将图像元素插入到容器元素中
+                imageContainer.appendChild(img);
+                //this.result.push(img.src);
             }
         };
     },
